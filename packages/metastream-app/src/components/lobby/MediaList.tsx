@@ -7,12 +7,12 @@ import { IMediaItem } from '../../lobby/reducers/mediaPlayer'
 import {
   getCurrentMedia,
   getMediaQueue,
-  hasPlaybackPermissions
+  hasPlaybackPermissions,
 } from '../../lobby/reducers/mediaPlayer.helpers'
 import {
   server_requestDeleteMedia,
   server_requestMoveToTop,
-  server_requestToggleQueueLock
+  server_requestToggleQueueLock,
 } from '../../lobby/actions/mediaPlayer'
 
 import { IconButton } from '../common/button'
@@ -25,6 +25,7 @@ import { copyMediaLink, openMediaInBrowser } from '../../media/utils'
 import { withNamespaces, WithNamespaces } from 'react-i18next'
 import { sendMediaRequest } from 'lobby/actions/media-request'
 import { setSetting } from 'actions/settings'
+import { addFavorite } from 'reducers/favorites'
 
 interface IProps {
   className?: string
@@ -47,6 +48,7 @@ interface DispatchProps {
   deleteMedia(mediaId: string): void
   toggleQueueLock(): void
   toggleCollapsed(): void
+  addFavorite(media: IMediaItem): void
 }
 
 type Props = IProps & IConnectedProps & DispatchProps & WithNamespaces
@@ -79,12 +81,12 @@ class _MediaList extends Component<Props> {
           let items = [
             {
               label: t('openInBrowser'),
-              onClick: () => openMediaInBrowser(media)
+              onClick: () => openMediaInBrowser(media),
             },
             {
               label: t('copyLink'),
-              onClick: () => copyMediaLink(media)
-            }
+              onClick: () => copyMediaLink(media),
+            },
           ]
 
           if (media.description) {
@@ -92,8 +94,8 @@ class _MediaList extends Component<Props> {
               ...items,
               {
                 label: t('info'),
-                onClick: () => this.props.onShowInfo(media)
-              }
+                onClick: () => this.props.onShowInfo(media),
+              },
             ]
           }
 
@@ -102,16 +104,20 @@ class _MediaList extends Component<Props> {
               ...items,
               {
                 label: t('moveToTop'),
-                onClick: () => this.props.moveToTop(media.id)
+                onClick: () => this.props.moveToTop(media.id),
+              },
+              {
+                label: t('addFavorite'),
+                onClick: () => this.props.addFavorite(media),
               },
               {
                 label: t('duplicate'),
-                onClick: () => this.props.sendMediaRequest(media.requestUrl)
+                onClick: () => this.props.sendMediaRequest(media.requestUrl),
               },
               {
                 label: t('remove'),
-                onClick: () => this.props.deleteMedia(media.id)
-              }
+                onClick: () => this.props.deleteMedia(media.id),
+              },
             ]
           }
 
@@ -131,12 +137,12 @@ class _MediaList extends Component<Props> {
       >
         {this.props.collapsible && this.props.collapsed
           ? null
-          : this.mediaList.map(media => {
+          : this.mediaList.map((media) => {
               return (
                 <MediaItem
                   key={media.id}
                   media={media}
-                  onClickMenu={e => {
+                  onClickMenu={(e) => {
                     this.listOverlay!.onSelect(e, media)
                   }}
                 />
@@ -186,17 +192,19 @@ export const MediaList = withNamespaces()(
       currentMedia: getCurrentMedia(state),
       mediaQueue: getMediaQueue(state),
       mediaQueueLocked: state.mediaPlayer.queueLocked,
-      collapsed: !!state.settings.mediaListCollapsed
+      collapsed: !!state.settings.mediaListCollapsed,
     }),
     (dispatch): DispatchProps => ({
       moveToTop(mediaId) {
         dispatch(server_requestMoveToTop(mediaId) as any)
       },
       sendMediaRequest(url) {
-        dispatch(sendMediaRequest({
-          url,
-          source: 'media-context-menu-duplicate'
-        }) as any)
+        dispatch(
+          sendMediaRequest({
+            url,
+            source: 'media-context-menu-duplicate',
+          }) as any,
+        )
       },
       deleteMedia(mediaId: string) {
         dispatch(server_requestDeleteMedia(mediaId) as any)
@@ -205,8 +213,11 @@ export const MediaList = withNamespaces()(
         dispatch(server_requestToggleQueueLock() as any)
       },
       toggleCollapsed() {
-        dispatch(setSetting('mediaListCollapsed', collapsed => !collapsed))
-      }
-    })
-  )(_MediaList)
+        dispatch(setSetting('mediaListCollapsed', (collapsed) => !collapsed))
+      },
+      addFavorite(media) {
+        dispatch(addFavorite(media))
+      },
+    }),
+  )(_MediaList),
 )

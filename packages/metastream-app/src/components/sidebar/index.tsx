@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { setLobbyModal } from 'actions/ui'
 import { LobbyModal } from 'reducers/ui'
 import { MediaList } from 'components/lobby/MediaList'
+import { FavoritesList } from 'components/lobby/FavoritesList'
 import { PanelHeader } from 'components/lobby/PanelHeader'
 import { ChatLayoutButton } from 'components/chat/ChatLayoutButton'
 import { t } from 'locale'
@@ -41,6 +42,7 @@ export const Sidebar: React.SFC<Props> = ({ className, popup }) => {
         }}
         collapsible
       />
+      <FavoritesList className={styles.list} />
       <PanelHeader title={t('chat')} action={popup ? null : <ChatLayoutButton />} />
       <Chat className={styles.chat} showDockOption={false} />
     </div>

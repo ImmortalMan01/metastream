@@ -8,7 +8,7 @@ import {
   COLOR_LEN,
   DEFAULT_COLOR,
   DEFAULT_USERNAME,
-  USERNAME_MIN_LEN
+  USERNAME_MIN_LEN,
 } from 'constants/settings'
 import { IAppState } from '.'
 import { stripEmoji } from 'utils/string'
@@ -25,7 +25,7 @@ export const enum SessionMode {
   Offline = 1,
 
   /** Permission to join is requested upon connection. */
-  Private = 2
+  Private = 2,
 }
 
 export interface ISettingsState {
@@ -44,6 +44,7 @@ export interface ISettingsState {
   mediaListCollapsed?: boolean
   autoFullscreen: boolean
   theaterMode: boolean
+  audioMode: boolean
   safeBrowse: boolean
 }
 
@@ -57,12 +58,13 @@ const initialState: ISettingsState = {
   chatTimestamp: false,
   autoFullscreen: true,
   theaterMode: false,
-  safeBrowse: true
+  audioMode: false,
+  safeBrowse: true,
 }
 
 export const settings: Reducer<ISettingsState> = (
   state: ISettingsState = initialState,
-  action: any
+  action: any,
 ) => {
   if (isType(action, setSetting as any)) {
     const { key, value } = action.payload as { key: keyof ISettingsState; value: any }
@@ -75,18 +77,18 @@ export const settings: Reducer<ISettingsState> = (
     return {
       ...state,
       mute: false,
-      volume: clamp(action.payload, 0, 1)
+      volume: clamp(action.payload, 0, 1),
     }
   } else if (isType(action, addVolume)) {
     return {
       ...state,
       mute: false,
-      volume: clamp(state.volume + action.payload, 0, 1)
+      volume: clamp(state.volume + action.payload, 0, 1),
     }
   } else if (isType(action, setMute)) {
     return {
       ...state,
-      mute: action.payload
+      mute: action.payload,
     }
   }
 
@@ -118,6 +120,7 @@ export const getLocalAvatar = (state: IAppState) => {
 export interface PlayerSettings {
   autoFullscreen: boolean
   theaterMode: boolean
+  audioMode: boolean
 
   // UNUSED
   mediaSessionProxy?: boolean
@@ -128,6 +131,7 @@ export interface PlayerSettings {
 
 /** Gets a subset of settings to pass to player extension */
 export const getPlayerSettings = createStructuredSelector<IAppState, PlayerSettings>({
-  autoFullscreen: state => state.settings.autoFullscreen,
-  theaterMode: state => state.settings.theaterMode
+  autoFullscreen: (state) => state.settings.autoFullscreen,
+  theaterMode: (state) => state.settings.theaterMode,
+  audioMode: (state) => state.settings.audioMode,
 })
