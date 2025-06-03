@@ -4,6 +4,7 @@ import { merge } from 'lodash-es'
 
 import { settings, ISettingsState } from './settings'
 import { ui, IUIState } from './ui'
+import { favorites, IFavoritesState } from './favorites'
 
 import { ILobbyNetState, lobbyReducers } from '../lobby/reducers'
 import { AnyAction } from 'redux'
@@ -18,6 +19,7 @@ import { History } from 'history'
 
 export interface IAppState extends ILobbyNetState {
   settings: ISettingsState
+  favorites: IFavoritesState
   ui: IUIState
   router: RouterState
 }
@@ -33,6 +35,7 @@ export const createReducer = (history: History) => {
     router: connectRouter(history),
     ...lobbyReducers,
     settings,
+    favorites,
     ui
   })
 

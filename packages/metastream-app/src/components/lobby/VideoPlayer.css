@@ -24,6 +24,10 @@
   background: #000;
 }
 
+.audioOnly {
+  visibility: hidden;
+}
+
 .interactTrigger {
   composes: absolute-full from '~styles/layout.css';
   z-index: 2;

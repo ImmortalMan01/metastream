@@ -9,7 +9,7 @@ import {
   updatePlaybackTimer,
   server_requestSeek,
   server_requestPlayPause,
-  server_requestSetPlaybackRate
+  server_requestSetPlaybackRate,
 } from 'lobby/actions/mediaPlayer'
 import { clamp } from 'utils/math'
 import { MEDIA_REFERRER, MEDIA_SESSION_USER_AGENT } from 'constants/http'
@@ -89,7 +89,7 @@ const mapStateToProps = (state: IAppState): IConnectedProps => {
     isExtensionInstalled: state.ui.isExtensionInstalled,
     playerSettings: getPlayerSettings(state),
     safeBrowseEnabled: state.settings.safeBrowse,
-    popupPlayer: state.ui.popupPlayer
+    popupPlayer: state.ui.popupPlayer,
   }
 }
 
@@ -279,7 +279,7 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
       this.webview.dispatchRemoteEvent(
         'metastream-host-event',
         { type, payload },
-        { allFrames: true }
+        { allFrames: true },
       )
     }
   }
@@ -337,7 +337,7 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
       }
     },
     200,
-    { leading: true, trailing: true }
+    { leading: true, trailing: true },
   )
 
   private onMediaSeek = throttle(
@@ -350,7 +350,7 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
       }
     },
     500,
-    { leading: true, trailing: true }
+    { leading: true, trailing: true },
   )
 
   private onMediaVolumeChange = debounce((volume: number) => {
@@ -365,7 +365,7 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
       this.props.dispatch(server_requestSetPlaybackRate(playbackRate))
     },
     200,
-    { leading: true, trailing: true }
+    { leading: true, trailing: true },
   )
 
   private onMediaReady = (isTopSubFrame: boolean = false, payload?: MediaReadyPayload) => {
@@ -400,7 +400,7 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
 
       const isLiveMedia = prevDuration === 0
       const noDuration = !prevDuration
-      const isLongerDuration = nextDuration && (prevDuration && nextDuration > prevDuration)
+      const isLongerDuration = nextDuration && prevDuration && nextDuration > prevDuration
 
       if (nextDuration && !isLiveMedia && (noDuration || isLongerDuration)) {
         this.props.dispatch(updateMedia({ duration: nextDuration }))
@@ -547,7 +547,8 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
         className={cx(styles.video, {
           [styles.interactive]: this.state.interacting,
           [styles.playing]: !!this.props.current,
-          [styles.mediaReady]: this.state.mediaReady
+          [styles.mediaReady]: this.state.mediaReady,
+          [styles.audioOnly]: this.props.playerSettings.audioMode,
         })}
         allowScripts
         popup={this.shouldRenderPopup}
@@ -606,7 +607,7 @@ class _VideoPlayer extends PureComponent<PrivateProps, IState> {
     if (this.webview) {
       this.webview.loadURL(this.mediaUrl, {
         httpReferrer: this.httpReferrer,
-        userAgent: MEDIA_SESSION_USER_AGENT
+        userAgent: MEDIA_SESSION_USER_AGENT,
       })
     }
   }

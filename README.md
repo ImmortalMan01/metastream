@@ -31,7 +31,9 @@
 - Localization—[see info on contributing](./packages/metastream-app/src/locale#contributing).
 
 #### Are you a website owner?
+
 Easily add watch party support to your website by redirecting the user to Metastream.
+
 ```html
 <a href="https://app.getmetastream.com/?url=https://youtu.be/3bNITQR4Uso">Watch in Metastream</a>
 ```
@@ -41,10 +43,10 @@ Easily add watch party support to your website by redirecting the user to Metast
 - [x] Add localization ([#5](https://github.com/samuelmaddock/metastream/issues/5))
 - [x] Improve networking reliability ([#74](https://github.com/samuelmaddock/metastream/issues/74))
 - [x] Port Metastream from Electron to a web app ([#94](https://github.com/samuelmaddock/metastream/issues/94))
-- [ ] Improve UX and stability
-- [ ] Add favorites/bookmarks ([#21](https://github.com/samuelmaddock/metastream/issues/21))
+- [x] Improve UX and stability
+- [x] Add favorites/bookmarks ([#21](https://github.com/samuelmaddock/metastream/issues/21))
 - [ ] Add playlists
-- [ ] Add audio mode ([#22](https://github.com/samuelmaddock/metastream/issues/22))
+- [x] Add audio mode ([#22](https://github.com/samuelmaddock/metastream/issues/22))
 
 Have a feature in mind? Make a request by [creating a GitHub issue](https://github.com/samuelmaddock/metastream/issues).
 

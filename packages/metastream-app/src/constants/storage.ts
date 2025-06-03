@@ -3,5 +3,6 @@ export const enum StorageKey {
   AutoplayNotice = 'autoplayNotice',
   HasInteracted = 'hasInteracted',
   Login = 'login',
-  TipsDismissed = 'tipsDismissed'
+  TipsDismissed = 'tipsDismissed',
+  Favorites = 'favorites',
 }

@@ -45,6 +45,7 @@ export default {
   donate: 'Donate',
   donators: 'Donators',
   duplicate: 'Duplicate',
+  addFavorite: 'Add to favorites',
   embedBlocked:
     'To enable playback with <1>{{host}}</1>, Metastream must open the website in a popup.',
   endSessionTitle: 'End Session?',
@@ -134,12 +135,15 @@ export default {
   theaterMode: 'Theater mode',
   theaterModeDesc:
     'Hide all non-video content on the webpage. Note that this might also hide soft subtitles.',
+  audioMode: 'Audio mode',
+  audioModeDesc: 'Hide video and play audio only.',
   thirdPartyIntegrations: 'Third-party Integrations',
   toggleDJ: 'Toggle DJ',
   uiDockToRight: 'Dock to right side',
   uiUndock: 'Undock into floating overlays',
   unlimited: 'Unlimited',
   unlockQueue: 'Unlock queue',
+  favorites: 'Favorites',
   updateAvailable:
     'An update for Metastream is available. Press the UPDATE button in the top-right to receive the update.',
   username: 'Username',
@@ -153,5 +157,4 @@ export default {
   welcome: 'Welcome',
   welcomeToMetastream: 'Welcome to Metastream',
   welcomeMessage1: 'Hi, thanks for trying out Metastream!',
-
 }

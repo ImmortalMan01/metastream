@@ -44,6 +44,14 @@ export default class AppearanceSettings extends Component<Props> {
         />
 
         <SwitchOption
+          inputId="audiomode"
+          title={t('audioMode')}
+          description={t('audioModeDesc')}
+          checked={settings.audioMode}
+          onChange={checked => setSetting('audioMode', checked)}
+        />
+
+        <SwitchOption
           inputId="dock_chat"
           title={t('uiDockToRight')}
           checked={settings.chatLocation === ChatLocation.DockRight}
