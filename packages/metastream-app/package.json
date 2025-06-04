@@ -33,7 +33,7 @@
     "@types/libsodium-wrappers": "^0.7.0",
     "@types/lodash-es": "^4.17.3",
     "@types/marked": "^0.6.5",
-    "@types/node": "^12.11.7",
+    "@types/node": "^22.15.29",
     "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
@@ -127,8 +127,8 @@
     ]
   },
   "devEngines": {
-    "node": ">=10.x",
-    "yarn": ">=1.10.1"
+    "node": ">=22.16.0",
+    "yarn": ">=1.22.22"
   },
   "prettier": {
     "printWidth": 100,

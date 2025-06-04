@@ -28,7 +28,7 @@
     "jest": "^25.1.0",
     "mock-socket": "^9.0.3",
     "typescript": "^3.8.3",
-    "wrtc": "^0.4.4"
+    "wrtc": "^0.4.7"
   },
   "bin": {
     "signal-server": "./cli.js"
