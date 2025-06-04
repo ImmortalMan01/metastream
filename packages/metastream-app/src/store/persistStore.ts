@@ -3,7 +3,7 @@ import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
 import { createMigrate, PersistedState } from 'redux-persist'
 
-const whitelist: (keyof IAppState)[] = ['mediaPlayer', 'settings', 'favorites']
+const whitelist: (keyof IAppState)[] = ['mediaPlayer', 'settings', 'favorites', 'playlists']
 
 const migrations: { [version: number]: (state: any) => any } = {
   2: function removeDefaultAvatarMigration(state) {

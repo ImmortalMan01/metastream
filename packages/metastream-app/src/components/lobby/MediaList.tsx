@@ -26,6 +26,7 @@ import { withNamespaces, WithNamespaces } from 'react-i18next'
 import { sendMediaRequest } from 'lobby/actions/media-request'
 import { setSetting } from 'actions/settings'
 import { addFavorite } from 'reducers/favorites'
+import { addPlaylistItem } from 'reducers/playlists'
 
 interface IProps {
   className?: string
@@ -49,6 +50,7 @@ interface DispatchProps {
   toggleQueueLock(): void
   toggleCollapsed(): void
   addFavorite(media: IMediaItem): void
+  addPlaylistItem(media: IMediaItem): void
 }
 
 type Props = IProps & IConnectedProps & DispatchProps & WithNamespaces
@@ -109,6 +111,10 @@ class _MediaList extends Component<Props> {
               {
                 label: t('addFavorite'),
                 onClick: () => this.props.addFavorite(media),
+              },
+              {
+                label: t('addPlaylist'),
+                onClick: () => this.props.addPlaylistItem(media),
               },
               {
                 label: t('duplicate'),
@@ -217,6 +223,9 @@ export const MediaList = withNamespaces()(
       },
       addFavorite(media) {
         dispatch(addFavorite(media))
+      },
+      addPlaylistItem(media) {
+        dispatch(addPlaylistItem(media))
       },
     }),
   )(_MediaList),
