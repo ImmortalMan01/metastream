@@ -45,7 +45,7 @@ Easily add watch party support to your website by redirecting the user to Metast
 - [x] Port Metastream from Electron to a web app ([#94](https://github.com/samuelmaddock/metastream/issues/94))
 - [x] Improve UX and stability
 - [x] Add favorites/bookmarks ([#21](https://github.com/samuelmaddock/metastream/issues/21))
-- [ ] Add playlists
+- [x] Add playlists
 - [x] Add audio mode ([#22](https://github.com/samuelmaddock/metastream/issues/22))
 
 Have a feature in mind? Make a request by [creating a GitHub issue](https://github.com/samuelmaddock/metastream/issues).

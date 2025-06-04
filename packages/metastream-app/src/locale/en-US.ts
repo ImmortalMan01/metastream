@@ -46,6 +46,7 @@ export default {
   donators: 'Donators',
   duplicate: 'Duplicate',
   addFavorite: 'Add to favorites',
+  addPlaylist: 'Add to playlist',
   embedBlocked:
     'To enable playback with <1>{{host}}</1>, Metastream must open the website in a popup.',
   endSessionTitle: 'End Session?',
@@ -144,6 +145,7 @@ export default {
   unlimited: 'Unlimited',
   unlockQueue: 'Unlock queue',
   favorites: 'Favorites',
+  playlists: 'Playlists',
   updateAvailable:
     'An update for Metastream is available. Press the UPDATE button in the top-right to receive the update.',
   username: 'Username',
